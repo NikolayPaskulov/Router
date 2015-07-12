@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Route.js"></script>
+    <script src="Router.js"></script>
+</head>
+<body>
+    <a href="#/home">home</a>
+    <a href="#/home/5">HomeWithId</a>
+    <a href="#/contacts">content</a>
+    <a href="#/contacts/8">Contacts ID - NUmber</a>
+    <a href="#/contacts/pesho">Contacts ID - NOT NUMBER</a>
+    <script>
+        var router = new Router();
+        router
+            .when('/home/{filter:pattern(foo|bar)}', {
+                callback: function (obj) {
+                    console.log(obj);
+                    console.log('home');
+                }
+            })
+            .when('/home/{id:number}', {
+                callback: function (obj) {
+                    console.log(obj);
+                    console.log('home with id');
+                }
+            })
+            .when('/contacts', {
+                callback: function (obj) {
+                    console.log(obj);
+                    console.log('contacts');
+                }
+            })
+            .when('/contacts/{id:number}', {
+                callback: function (obj) {
+                    console.log(obj);
+                    console.log('contacts with id that is number');
+                }
+            })
+            .otherwise({
+                redirectTo: '/home'
+            });
+
+    </script>
+</body>
+</html>
